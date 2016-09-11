@@ -7,6 +7,8 @@ body {
   height: 75px;
   margin-right: 2px;
   background-color: teal; }
+  .bar:hover {
+    background-color: #ead45c; }
 
 .showValue {
   position: absolute;
