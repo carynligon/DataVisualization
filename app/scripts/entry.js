@@ -27,9 +27,7 @@ var bars = canvas.selectAll('rect')
   .data(dataArray)
   .enter()
     .append('rect')
-    .attr('width', function(d) {
-      return widthScale(d);
-    })
+    .attr('width', 0)
     .attr('height', 50)
     .attr('fill', function(d) {
       return color(d);
@@ -37,3 +35,9 @@ var bars = canvas.selectAll('rect')
     .attr('y', function(d,i) {
       return i * 100;
     });
+
+bars.transition()
+  .duration(1500)
+  .attr('width', function(d) {
+    return widthScale(d);
+  });
