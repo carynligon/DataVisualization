@@ -164,3 +164,24 @@ d3.json('data/Most+Recent+Cohorts+(Scorecard+Elements).json', function(data) {
 //   .attr('fill', 'none')
 //   .attr('stroke', '#000')
 //   .attr('stroke-width', 5)
+
+// creating a circle
+var canvas = d3.select('body')
+    .append('svg')
+    .attr('width', 500)
+    .attr('height', 500);
+
+var group = canvas.append('g')
+  .attr('transform', 'translate(100,100)');
+
+var r = 100;
+var p = Math.PI * 2;
+
+var arc = d3.svg.arc()
+  .innerRadius(r-20)
+  .outerRadius(r)
+  .startAngle(0)
+  .endAngle(p)
+
+group.append('path')
+  .attr('d', arc)
