@@ -166,22 +166,57 @@ d3.json('data/Most+Recent+Cohorts+(Scorecard+Elements).json', function(data) {
 //   .attr('stroke-width', 5)
 
 // creating a circle
+// var canvas = d3.select('body')
+//     .append('svg')
+//     .attr('width', 500)
+//     .attr('height', 500);
+//
+// var group = canvas.append('g')
+//   .attr('transform', 'translate(100,100)');
+//
+// var r = 100;
+// var p = Math.PI * 2;
+//
+// var arc = d3.svg.arc()
+//   .innerRadius(r-20)
+//   .outerRadius(r)
+//   .startAngle(0)
+//   .endAngle(p)
+//
+// group.append('path')
+//   .attr('d', arc)
+
+//creating donut/pie chart
+var data = [10, 30, 50];
+var color2 = d3.scale.ordinal()
+  .range(['#34eadc', '#fb054f', '#2ecc23']);
+
 var canvas = d3.select('body')
     .append('svg')
     .attr('width', 500)
     .attr('height', 500);
 
 var group = canvas.append('g')
-  .attr('transform', 'translate(100,100)');
-
-var r = 100;
-var p = Math.PI * 2;
+  .attr('transform', 'translate(300,200)');
 
 var arc = d3.svg.arc()
-  .innerRadius(r-20)
-  .outerRadius(r)
-  .startAngle(0)
-  .endAngle(p)
+  .innerRadius(200)
+  .outerRadius(r);
 
-group.append('path')
+var pie = d3.layout.pie()
+  .value(function(d) { return d; });
+
+var arcs = group.selectAll('.arc')
+  .data(pie(data))
+  .enter()
+  .append('g')
+  .attr('class', 'arc')
+
+arcs.append('path')
   .attr('d', arc)
+  .attr('fill', function(d) {
+    return color2(d.data)
+  })
+
+var r = 300;
+var p = Math.PI * 2;
